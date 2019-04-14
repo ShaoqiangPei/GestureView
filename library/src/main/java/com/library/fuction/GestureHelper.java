@@ -1,6 +1,7 @@
 package com.library.fuction;
 
 import android.os.Handler;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -63,6 +64,14 @@ public class GestureHelper {
         }
         mPointCount=pointCount;
         return GestureHelper.this;
+    }
+
+    /**设置LockView尺寸**/
+    public void setLockViewSize(int dp){
+        ViewGroup.LayoutParams params= mLockView.getLayoutParams();
+        params.height= dp;
+        params.width= dp;
+        mLockView.setLayoutParams(params);
     }
 
     /**设置手势密码**/
