@@ -1,6 +1,8 @@
 package com.gestureview;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.library.fuction.GestureHelper;
@@ -44,6 +46,7 @@ public class SetGestureActivity extends AppCompatActivity {
     private void initData(){
         //初始化
         mGestureHelper=new GestureHelper(mLockView);
+        Log.i("pei","========mGestureHelper======");
     }
 
     private void setListener(){
@@ -53,7 +56,9 @@ public class SetGestureActivity extends AppCompatActivity {
 //                .setSelectId(R.drawable.ic_about)//设置选中图标
 //                .setLineColor(Color.BLUE)//设置连线颜色
 //                .setStrokeWidth(5f)//设置连线宽度
-//                .setPointCount(5)//设置最少连接点数
+//                .setPointCount(5);//设置最少连接点数
+
+        mGestureHelper.setDefaultSelectId();
 
         //设置密码
         mGestureHelper.setGesturePwd(new GestureHelper.OnSettingListener() {

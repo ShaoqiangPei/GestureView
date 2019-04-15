@@ -15,13 +15,18 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Vibrator;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import com.library.R;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 /**
  * Created pei
@@ -50,8 +55,26 @@ public class GestureLockView extends View {
     private float mouseX, mouseY;
     private OnDrawFinishedListener listener;
 
-    public GestureLockView(Context context, AttributeSet attrs) {
+    public GestureLockView(Context context) {
+        super(context);
+        this.context=context;
+    }
+
+    public GestureLockView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context=context;
+        init(context, attrs);
+    }
+
+    public GestureLockView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.context=context;
+        init(context, attrs);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public GestureLockView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         this.context=context;
         init(context, attrs);
     }
@@ -87,6 +110,8 @@ public class GestureLockView extends View {
 
     private void init(Context context, AttributeSet attrs) {
         setBackgroundColor(Color.TRANSPARENT);
+
+        Log.i("pei","======opp=======");
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GestureLockView);
         int normal = a.getResourceId(R.styleable.GestureLockView_bitmapNormal, R.drawable.normal_gesture);

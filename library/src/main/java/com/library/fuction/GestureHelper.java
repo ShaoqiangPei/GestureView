@@ -3,6 +3,8 @@ package com.library.fuction;
 import android.os.Handler;
 import android.view.ViewGroup;
 
+import com.library.R;
+
 import java.util.List;
 
 /**
@@ -47,6 +49,11 @@ public class GestureHelper {
     /**设置选中情况下资源id**/
     public GestureHelper setSelectId(int drawableId){
         mLockView.setSelectId(drawableId);
+        return GestureHelper.this;
+    }
+
+    public GestureHelper setDefaultSelectId(){
+        mLockView.setSelectId(R.drawable.gesture);
         return GestureHelper.this;
     }
 
@@ -154,7 +161,7 @@ public class GestureHelper {
     }
 
     /**清除密码**/
-    private void delayClearLockView() {
+    public void delayClearLockView() {
         new Handler().postDelayed(() -> mLockView.resetPoints(), 600);
     }
 
