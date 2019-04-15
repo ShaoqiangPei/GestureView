@@ -114,9 +114,9 @@ public class GestureLockView extends View {
         Log.i("pei","======opp=======");
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GestureLockView);
-        int normal = a.getResourceId(R.styleable.GestureLockView_bitmapNormal, R.drawable.normal_gesture);
-        int select = a.getResourceId(R.styleable.GestureLockView_bitmapSelect, R.drawable.select_gesture);
-        int error = a.getResourceId(R.styleable.GestureLockView_bitmapError, R.drawable.error_gesture);
+        int normal = a.getResourceId(R.styleable.GestureLockView_bitmapNormal, R.mipmap.normal_gesture);
+        int select = a.getResourceId(R.styleable.GestureLockView_bitmapSelect, R.mipmap.select_gesture);
+        int error = a.getResourceId(R.styleable.GestureLockView_bitmapError, R.mipmap.error_gesture);
         int lineColor = a.getColor(R.styleable.GestureLockView_lineColor, 0xFF773355);
         float strokeWidth = a.getDimension(R.styleable.GestureLockView_strokeWidth, 8);
         a.recycle();

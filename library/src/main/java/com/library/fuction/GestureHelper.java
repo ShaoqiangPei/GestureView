@@ -53,7 +53,7 @@ public class GestureHelper {
     }
 
     public GestureHelper setDefaultSelectId(){
-        mLockView.setSelectId(R.drawable.gesture);
+        mLockView.setSelectId(R.mipmap.gesture);
         return GestureHelper.this;
     }
 
