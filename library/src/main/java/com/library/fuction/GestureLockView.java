@@ -111,8 +111,6 @@ public class GestureLockView extends View {
     private void init(Context context, AttributeSet attrs) {
         setBackgroundColor(Color.TRANSPARENT);
 
-        Log.i("pei","======opp=======");
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GestureLockView);
         int normal = a.getResourceId(R.styleable.GestureLockView_bitmapNormal, R.mipmap.normal_gesture);
         int select = a.getResourceId(R.styleable.GestureLockView_bitmapSelect, R.mipmap.select_gesture);
@@ -364,8 +362,13 @@ public class GestureLockView extends View {
             applicationInfo = null;
         }
         Drawable d = packageManager.getApplicationIcon(applicationInfo); //xxx根据自己的情况获取drawable
-        BitmapDrawable bd = (BitmapDrawable) d;
-        Bitmap bm = bd.getBitmap();
+        Bitmap bm = null;
+        try {
+            BitmapDrawable bd = (BitmapDrawable) d;
+            bm = bd.getBitmap();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return bm;
     }
 
