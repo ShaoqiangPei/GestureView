@@ -4,6 +4,10 @@
 #### 简介
 这是一个手势密码使用功能的封装库，主要用来设置手势密码和手势密码验证,调用简单方便。
 
+#### 效果图
+![1.gif](https://upload-images.jianshu.io/upload_images/6127340-0f06f45fc1bb2b83.gif?imageMogr2/auto-orient/strip)
+![2.gif](https://upload-images.jianshu.io/upload_images/6127340-2e318dc4a54c39ea.gif?imageMogr2/auto-orient/strip)
+
 #### 一. 库引用配置
 在你项目中的project对应的build.gradle中添加如下配置：
 ```
@@ -28,54 +32,46 @@ Tag为引用库版本，如我要引用1.0.0版本，可以这样引用：
 	}
 ```
 #### 二.具体使用
-##### 2.1 在布局中引用GestureLockView控件
-xml 中引用示例如下：
-```
-    <com.library.fuction.GestureLockView
-        android:id="@+id/gestureLockView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-```
-##### 2.2 方法介绍
+##### 2.1 方法介绍
 手势密码库的一系列方法都封装到 GestureHelper 类中,下面对GestureHelper中一系列方法的使用做一个简单介绍
-###### 2.2.1 GestureHelper初始化
+###### 2.1.1 GestureHelper初始化
 GestureHelper初始化需要传一个GestureLockView对象，如下
 ```
 public GestureHelper(GestureLockView lockView)
 ```
-###### 2.2.2 设置连线颜色
+###### 2.1.2 设置连线颜色
 ```
 setLineColor(int lineColor)
 ```
-###### 2.2.3 设置正常情况下资源id
+###### 2.1.3 设置正常情况下资源id
 ```
 setNormalId(int drawableId)
 ```
-###### 2.2.4 设置选中情况下资源id
+###### 2.1.4 设置选中默认资源id
+```
+setDefaultSelectId()
+```
+###### 2.1.5 设置选中情况下资源id
 ```
 setSelectId(int drawableId)
 ```
-###### 2.2.5 设置错误情况下资源id
+###### 2.1.6 设置错误情况下资源id
 ```
 setErrorId(int drawableId)
 ```
-###### 2.2.6 设置至少连接的点数
+###### 2.1.7 设置至少连接的点数
 ```
 setPointCount(int pointCount)
 ```
-###### 2.2.7 设置GestureLockView尺寸
+###### 2.1.8 设置GestureLockView尺寸
 ```
 setLockViewSize(int dp)
 ```
-###### 2.2.8 设置手势密码
+###### 2.1.9 设置手势密码
 ```
 setGesturePwd(OnSettingListener onSettingListener)
 ```
-###### 2.2.9 验证手势密码
+###### 2.2.0 验证手势密码
 其中 password 为传入的要验证的密码
 ``` 
 verifyGesturePwd(String password,OnVerifyListener onVerifyListener)
@@ -102,6 +98,11 @@ verifyGesturePwd(String password,OnVerifyListener onVerifyListener)
 ```
     mGestureHelper=new GestureHelper(mLockView);
 ```
+##### 3.2 在activity中对GestureLockView进行简单设置
+```
+        mGestureHelper=new GestureHelper(mLockView);
+        mGestureHelper.setDefaultSelectId();
+```
 ##### 3.3 在activity中对GestureLockView进行基本设置
 这里我们可以全部设置，也可以根据具体情况做部分设置或不设置,以下给一个设置的示例：
 ```
@@ -126,6 +127,8 @@ verifyGesturePwd(String password,OnVerifyListener onVerifyListener)
         mGestureHelper.setLockViewSize(ScreenUtil.getWidth()-ScreenUtil.dp2px(20,mContext));
 ```
 ##### 3.4 GestureLockView设置手势密码
+需要注意的是，当 simplePattern 返回 null时表示设置手势密码失败,不为 null 的时候，表示设置手势密码成功,
+你可以在设置密码成功的时候做保存密码和关闭当前设置密码界面的操作。
 ```
         //设置密码监听
         mGestureHelper.setGesturePwd(new GestureHelper.OnSettingListener() {
@@ -153,9 +156,9 @@ verifyGesturePwd(String password,OnVerifyListener onVerifyListener)
             }
         });
 ```
-以上需要注意的是，当 simplePattern 返回 null时表示设置手势密码失败,不为 null 的时候，表示设置手势密码成功,
-你可以在设置密码成功的时候做保存密码和关闭当前设置密码界面的操作。
 ##### 3.4 GestureLockView验证手势密码密码
+验证手势密码时需要注意的是，这里的 PASS_WORD 是你需要验证的手势密码，当access返回false时表示验证失败，
+access返回true时表示验证成功.验证成功的时候，你可以做关闭当前手势验证界面的操作。
 ```
        //验证手势密码的监听
         mGestureHelper.verifyGesturePwd(PASS_WORD, new GestureHelper.OnVerifyListener() {
@@ -176,8 +179,7 @@ verifyGesturePwd(String password,OnVerifyListener onVerifyListener)
             }
         });
 ```
-验证手势密码时需要注意的是，这里的 PASS_WORD 是你需要验证的手势密码，当access返回false时表示验证失败，
-access返回true时表示验证成功.验证成功的时候，你可以做关闭当前手势验证界面的操作。
+
 
 
 
